@@ -16,6 +16,6 @@ artifacts:
 deploy:
   - provider: 'NuGet'
     server: 'https://www.myget.org/F/chakrygin/api/v2/package'
+    symbol_server: 'https://www.myget.org/F/chakrygin/api/v3/index.json'
     api_key:
       secure: 'EXtHXH9NieOgD7qVcd668dbI18n7wDROf32KVTqjxw17N0YFLbvKo8zTDZlO3F+d'
-    skip_symbols: true
