@@ -34,8 +34,8 @@ ProjectSection(SolutionItems) = preProject
 	Directory.Build.targets = Directory.Build.targets
 	build.ps1 = build.ps1
 	build.sh = build.sh
-	.github\workflows\build.yml = .github\workflows\build.yml
 	nuget.config = nuget.config
+	.appveyor.yml = .appveyor.yml
 EndProjectSection
 EndProject
 Global
