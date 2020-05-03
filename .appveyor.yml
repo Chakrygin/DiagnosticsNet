@@ -19,3 +19,12 @@ deploy:
     symbol_server: 'https://www.myget.org/F/chakrygin/api/v2/symbolpackage/'
     api_key:
       secure: 'EXtHXH9NieOgD7qVcd668dbI18n7wDROf32KVTqjxw17N0YFLbvKo8zTDZlO3F+d'
+
+  - provider: 'NuGet'
+    server: 'https://api.nuget.org/v3/index.json'
+    symbol_server: 'https://api.nuget.org/v3/index.json'
+    api_key:
+      secure: 'con4KeO7E9/cEmERGwK1wSfrunGRx1ajgvO8NzXZApqioB12tdmopxq6r/5Auon3'
+    on:
+      branch: 'master'
+      APPVEYOR_REPO_TAG: 'true'
