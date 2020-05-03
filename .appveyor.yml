@@ -8,7 +8,14 @@ build_script:
 test: "off"
 
 artifacts:
-  - name: Packages
+  - name: 'Packages'
     path: '.\artifacts\*.nupkg'
-  - name: Symbols
+  - name: 'Symbols'
     path: '.\artifacts\*.snupkg'
+
+deploy:
+  - provider: 'NuGet'
+    server: 'https://www.myget.org/F/chakrygin/api/v2/package'
+    api_key:
+      secure: 'EXtHXH9NieOgD7qVcd668dbI18n7wDROf32KVTqjxw17N0YFLbvKo8zTDZlO3F+d'
+    skip_symbols: true
