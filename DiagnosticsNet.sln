@@ -7,12 +7,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "common", "common", "{C9F14C
 ProjectSection(SolutionItems) = preProject
 	.gitattributes = .gitattributes
 	.gitignore = .gitignore
-	global.json = global.json
 	LICENSE = LICENSE
 	README.md = README.md
 	.editorconfig = .editorconfig
-	Directory.Build.props = Directory.Build.props
-	Directory.Build.targets = Directory.Build.targets
 EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "sandbox", "sandbox", "{8B42C7B9-DEB6-4864-90D8-F45FF74EEABE}"
@@ -28,6 +25,18 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{85DF564C-2C12-42EE-BA0B-4606B0A64BF7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiagnosticsNet.Tests", "tests\DiagnosticsNet.Tests\DiagnosticsNet.Tests.csproj", "{0D669515-2E12-4CD1-976A-16A45AA9FC4C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "build", "build", "{3D611BF9-5691-428F-AF4F-7E73E0A063AE}"
+ProjectSection(SolutionItems) = preProject
+	build.cmd = build.cmd
+	global.json = global.json
+	Directory.Build.props = Directory.Build.props
+	Directory.Build.targets = Directory.Build.targets
+	build.ps1 = build.ps1
+	build.sh = build.sh
+	.github\workflows\build.yml = .github\workflows\build.yml
+	nuget.config = nuget.config
+EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

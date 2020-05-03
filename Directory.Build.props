@@ -1,12 +1,37 @@
 <Project>
 
   <PropertyGroup>
+    <Title>Diagnostics.NET</Title>
+    <Authors>Igor Chakrygin</Authors>
+    <Copyright>Copyright © Igor Chakrygin 2020</Copyright>
+    <Description>Diagnostics.NET is a simple library that allows your ASP.NET Core applications to subscribe to DiagnosticSource events and process them.</Description>
+
+    <PackageProjectUrl>https://github.com/Chakrygin/DiagnosticsNet</PackageProjectUrl>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+
+    <RepositoryUrl>https://github.com/Chakrygin/DiagnosticsNet.git</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+
+    <IncludeSource>true</IncludeSource>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+
+    <!-- TODO: https://docs.microsoft.com/en-us/dotnet/core/tools/csproj -->
+  </PropertyGroup>
+
+  <PropertyGroup>
     <LangVersion>8.0</LangVersion>
     <Nullable>enable</Nullable>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="MinVer" Version="2.1.0"/>
+    <SourceRoot Include="$(MSBuildThisFileDirectory)/"/>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MinVer" Version="2.1.0" PrivateAssets="All"/>
   </ItemGroup>
 
 </Project>
