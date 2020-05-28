@@ -39,54 +39,54 @@ the DiagnosticSource mechanism and the Diagnostics.NET library.
 
 4. If you are implementing interface `IDiagnosticHandler`, you need to implement
    methods `IsEnabled` and `Write`:
-   
+
     ```c#
     using DiagnosticsNet;
-    
+
     public sealed class ExampleDiagnosticHandler : IDiagnosticHandler
     {
         private readonly ILogger<ExampleDiagnosticHandler> _logger;
-    
+
         public ExampleDiagnosticHandler(ILogger<ExampleDiagnosticHandler> logger)
         {
             _logger = logger;
         }
-    
+
         public bool IsEnabled(string name)
         {
             // This method should return true for each event that we want to process.
-    
+
             var isEnabled =
                 name == "Microsoft.AspNetCore.Hosting.HttpRequestIn" ||
                 name == "Microsoft.AspNetCore.Hosting.HttpRequestIn.Start" ||
                 name == "Microsoft.AspNetCore.Hosting.HttpRequestIn.Stop";
-    
+
             return isEnabled;
         }
-    
+
         public void Write(string name, dynamic value)
         {
             // This method should get the data from the value and
             // use it to handle the event.
-    
+
             switch (name)
             {
                 case "Microsoft.AspNetCore.Hosting.HttpRequestIn.Start":
                 {
                     var httpContext = (HttpContext) value.HttpContext;
                     httpContext.Items["Stopwatch"] = Stopwatch.StartNew();
-    
+
                     break;
                 }
-    
+
                 case "Microsoft.AspNetCore.Hosting.HttpRequestIn.Stop":
                 {
                     var httpContext = (HttpContext) value.HttpContext;
                     var stopwatch = (Stopwatch) httpContext.Items["Stopwatch"];
-                   
+
                     _logger.LogInformation(
                        $"Request finished in {stopwatch.Elapsed.TotalMilliseconds}ms.");
-    
+
                     break;
                 }
             }
@@ -94,49 +94,49 @@ the DiagnosticSource mechanism and the Diagnostics.NET library.
     }
     ```
 
-4. If you inherit from class `DiagnosticHandler`, you need to define a methods
+5. If you inherit from class `DiagnosticHandler`, you need to define a methods
    for each event that you need to process and mark them with `DiagnosticName` attribute.
 
     ```c#
     using DiagnosticsNet;
-    
+
     public sealed class ExampleDiagnosticHandler : DiagnosticHandler
     {
         private readonly ILogger<ExampleDiagnosticHandler> _logger;
-    
+
         public ExampleDiagnosticHandler(ILogger<ExampleDiagnosticHandler> logger)
         {
             _logger = logger;
         }
-    
+
         [DiagnosticName("Microsoft.AspNetCore.Hosting.HttpRequestIn")]
         public void OnHttpRequestIn()
         {
             // This method is required to receive Start and Stop events.
         }
-    
+
         [DiagnosticName("Microsoft.AspNetCore.Hosting.HttpRequestIn.Start")]
         public void OnHttpRequestInStart(HttpContext httpContext)
         {
             httpContext.Items["Stopwatch"] = Stopwatch.StartNew();
         }
-    
+
         [DiagnosticName("Microsoft.AspNetCore.Hosting.HttpRequestIn.Stop")]
         public void OnHttpRequestInStop(HttpContext httpContext)
         {
             var stopwatch = (Stopwatch) httpContext.Items["Stopwatch"];
-    
+
             _logger.LogInformation(
                 $"Request finished in {stopwatch.Elapsed.TotalMilliseconds}ms.");
         }
     }
     ```
 
-5. Add the handler class to the DI container in the Startup.cs file:
+6. Add the handler class to the DI container in the Startup.cs file:
 
     ```c#
     using DiagnosticsNet;
-    
+
     public sealed class Startup
     {
         public void ConfigureServices(IServiceCollection services)
@@ -147,15 +147,15 @@ the DiagnosticSource mechanism and the Diagnostics.NET library.
                 {
                     options.DiagnosticListenerName = "Microsoft.AspNetCore";
                 });
-   
+
             // ...
         }
-    
+
         // ...
     }
     ```
 
-6. Launch the application. In the log you will see a message similar to:
+7. Launch the application. In the log you will see a message similar to:
 
     ```
     info: ExampleDiagnosticHandler[0]
