@@ -9,6 +9,13 @@ jobs:
     env:
       CONFIGURATION: Release
 
+      PROJECTS_TO_PACKING: |
+        src/DiagnosticsNet/DiagnosticsNet.csproj
+        src/DiagnosticsNet.Abstractions/DiagnosticsNet.Abstractions.csproj
+
+      PROJECTS_TO_UNIT_TESTING: |
+        tests/DiagnosticsNet.Tests/DiagnosticsNet.Tests.csproj
+
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -26,14 +33,44 @@ jobs:
 
       - name: Build .NET Solution
         run: |
-          dotnet restore --packages "packages"
+          # Utilities
 
-          dotnet build --nologo --no-restore --configuration "$CONFIGURATION"
+          function echo_blue() {
+            echo -e "\e[94m$1\e[0"
+          }
 
-          dotnet test --nologo --no-build --configuration "$CONFIGURATION" "tests/DiagnosticsNet.Tests/DiagnosticsNet.Tests.csproj"
+          # Script
 
-          dotnet pack --nologo --no-build --configuration "$CONFIGURATION" --output "artifacts" "src/DiagnosticsNet/DiagnosticsNet.csproj"
-          dotnet pack --nologo --no-build --configuration "$CONFIGURATION" --output "artifacts" "src/DiagnosticsNet.Abstractions/DiagnosticsNet.Abstractions.csproj"
+          touch "$HOME"/.dotnet/"$(dotnet --version)".dotnetFirstUseSentinel
+
+          echo_blue "🔧 Restoring..."
+          dotnet restore \
+            --packages "packages"
+          echo
+
+          echo_blue "🔨 Building..."
+          dotnet build \
+            --nologo \
+            --no-restore \
+            --configuration "$CONFIGURATION"
+          echo
+
+          for project in $PROJECTS_TO_UNIT_TESTING[@]; do
+            echo_blue "Testing \"$project\"..."
+            echo "..."
+            echo
+          done
+
+          for project in $PROJECTS_TO_PACKING[@]; do
+            echo_blue "Packing \"$project\"..."
+            echo "..."
+            echo
+          done
+
+          # dotnet test --nologo --no-build --configuration "$CONFIGURATION" "tests/DiagnosticsNet.Tests/DiagnosticsNet.Tests.csproj"
+
+          # dotnet pack --nologo --no-build --configuration "$CONFIGURATION" --output "artifacts" "src/DiagnosticsNet/DiagnosticsNet.csproj"
+          # dotnet pack --nologo --no-build --configuration "$CONFIGURATION" --output "artifacts" "src/DiagnosticsNet.Abstractions/DiagnosticsNet.Abstractions.csproj"
 
       - name: Upload NuGet Packages
         uses: actions/upload-artifact@v2
