@@ -33,13 +33,9 @@ jobs:
 
       - name: Build .NET Solution
         run: |
-          # Utilities
-
           function echo_blue() {
-            echo -e "\e[94m$1\e[0"
+            echo -e "\e[34m$1\e[0"
           }
-
-          # Script
 
           touch "$HOME"/.dotnet/"$(dotnet --version)".dotnetFirstUseSentinel
 
@@ -55,22 +51,24 @@ jobs:
             --configuration "$CONFIGURATION"
           echo
 
-          for project in $PROJECTS_TO_UNIT_TESTING[@]; do
-            echo_blue "Testing \"$project\"..."
-            echo "..."
+          for project in $PROJECTS_TO_UNIT_TESTING; do
+            echo_blue "🧪 Testing \"$project\"..."
+            dotnet test "$project" \
+              --nologo \
+              --no-build \
+              --configuration "$CONFIGURATION" \
             echo
           done
 
-          for project in $PROJECTS_TO_PACKING[@]; do
-            echo_blue "Packing \"$project\"..."
-            echo "..."
+          for project in $PROJECTS_TO_PACKING; do
+            echo_blue "📦 Packing \"$project\"..."
+            dotnet pack "$project" \
+              --nologo \
+              --no-build \
+              --configuration "$CONFIGURATION" \
+              --output "artifacts"
             echo
           done
-
-          # dotnet test --nologo --no-build --configuration "$CONFIGURATION" "tests/DiagnosticsNet.Tests/DiagnosticsNet.Tests.csproj"
-
-          # dotnet pack --nologo --no-build --configuration "$CONFIGURATION" --output "artifacts" "src/DiagnosticsNet/DiagnosticsNet.csproj"
-          # dotnet pack --nologo --no-build --configuration "$CONFIGURATION" --output "artifacts" "src/DiagnosticsNet.Abstractions/DiagnosticsNet.Abstractions.csproj"
 
       - name: Upload NuGet Packages
         uses: actions/upload-artifact@v2
