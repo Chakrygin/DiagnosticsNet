@@ -22,7 +22,7 @@ jobs:
           key: Packages
 
       - name: Build .NET Solution
-        uses: Chakrygin/dotnet-build-action
+        uses: Chakrygin/dotnet-build-action@master
 
       - name: Upload NuGet Packages
         uses: actions/upload-artifact@v2
