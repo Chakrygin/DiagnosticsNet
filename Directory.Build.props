@@ -10,8 +10,8 @@
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
 
-    <RepositoryUrl>https://github.com/Chakrygin/DiagnosticsNet.git</RepositoryUrl>
-    <RepositoryType>git</RepositoryType>
+    <!-- <RepositoryUrl>https://github.com/Chakrygin/DiagnosticsNet.git</RepositoryUrl>
+    <RepositoryType>git</RepositoryType> -->
   </PropertyGroup>
 
   <PropertyGroup>
