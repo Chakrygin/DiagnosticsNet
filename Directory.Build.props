@@ -12,6 +12,8 @@
 
     <RepositoryUrl>https://github.com/Chakrygin/DiagnosticsNet.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
+
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
   </PropertyGroup>
 
   <PropertyGroup>
