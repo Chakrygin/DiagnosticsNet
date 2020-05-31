@@ -85,7 +85,7 @@ the DiagnosticSource mechanism and the Diagnostics.NET library.
                     var stopwatch = (Stopwatch) httpContext.Items["Stopwatch"];
 
                     _logger.LogInformation(
-                       $"Request finished in {stopwatch.Elapsed.TotalMilliseconds}ms.");
+                       $"Request finished in {stopwatch.Elapsed.TotalMilliseconds} ms.");
 
                     break;
                 }
@@ -127,7 +127,7 @@ the DiagnosticSource mechanism and the Diagnostics.NET library.
             var stopwatch = (Stopwatch) httpContext.Items["Stopwatch"];
 
             _logger.LogInformation(
-                $"Request finished in {stopwatch.Elapsed.TotalMilliseconds}ms.");
+                $"Request finished in {stopwatch.Elapsed.TotalMilliseconds} ms.");
         }
     }
     ```
@@ -157,7 +157,7 @@ the DiagnosticSource mechanism and the Diagnostics.NET library.
 
 7. Launch the application. In the log you will see a message similar to:
 
-    ```
+    ```log
     info: ExampleDiagnosticHandler[0]
-          Request finished in 0,48ms.
+          Request finished in 0.48 ms.
     ```

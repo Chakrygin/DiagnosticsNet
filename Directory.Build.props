@@ -12,12 +12,6 @@
 
     <RepositoryUrl>https://github.com/Chakrygin/DiagnosticsNet.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-
-    <IncludeSource>true</IncludeSource>
-    <IncludeSymbols>true</IncludeSymbols>
-    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
-
-    <!-- TODO: https://docs.microsoft.com/en-us/dotnet/core/tools/csproj -->
   </PropertyGroup>
 
   <PropertyGroup>
@@ -26,16 +20,12 @@
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
 
-  <ItemGroup>
-    <SourceRoot Include="$(MSBuildThisFileDirectory)/"/>
-  </ItemGroup>
-
   <PropertyGroup>
     <MinVerTagPrefix>v</MinVerTagPrefix>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="MinVer" Version="2.1.0" PrivateAssets="All"/>
+    <PackageReference Include="MinVer" Version="2.1.0" PrivateAssets="All" />
   </ItemGroup>
 
 </Project>
