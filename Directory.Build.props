@@ -9,9 +9,6 @@
     <PackageProjectUrl>https://github.com/Chakrygin/DiagnosticsNet</PackageProjectUrl>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-
-    <!-- <RepositoryUrl>https://github.com/Chakrygin/DiagnosticsNet.git</RepositoryUrl>
-    <RepositoryType>git</RepositoryType> -->
   </PropertyGroup>
 
   <PropertyGroup>
@@ -29,6 +26,10 @@
 
   <ItemGroup>
     <SourceRoot Include="$(MSBuildThisFileDirectory)/" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" />
   </ItemGroup>
 
   <PropertyGroup>
